@@ -1,0 +1,186 @@
+
+<style>
+  :host {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 8px 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  .content {
+    display: flex;
+    margin: 82px auto 32px;
+    padding: 0 16px;
+    max-width: 960px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form {
+    padding: 5px;
+    position: relative;
+    border-radius: 5px;
+    display: table-cell;
+  }
+
+  form div {
+    width: 45%;
+  }
+
+  .form input {
+    border: 1px;
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+  }
+
+  #sqColumns {
+    position: relative;
+    display: flex;
+    height: 250px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 100px;
+  }
+
+  #sqB {
+    padding-left: 125px;
+  }
+
+  #sqC {
+    padding-left: 125px;
+  }
+
+  #priceColumns {
+    position: relative;
+    display: flex;
+    height: 150px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  #priceB {
+    padding-left: 125px;
+  }
+
+  #subButton {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  footer {
+    margin-top: 150px;
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+  }
+
+  footer a {
+    display: flex;
+    align-items: center;
+  }
+
+</style>
+
+<div class="content" role="main">
+
+  <h1>Roommate Calculator</h1>
+
+  <!-- Resources -->
+  <h2>Square Footage</h2>
+  <p>Enter the square footage (to the nearest integer) of each roommate. Leave a 0 in any box when applicable.</p>
+
+  <form [formGroup]="sqValues">
+    <div id="sqColumns">
+      <div id = "sqA">
+        <label for="sqTotal">Total square footage in home: </label>
+        <input id="sqTotal" type="text" formControlName="sqTotal">
+
+        <label for="totalPrice">Total monthly cost of home: </label>
+        <input id="totalPrice" type="text" formControlName="totalPrice">
+
+        <label for="roommateNumber">Total number of roommates: </label>
+        <input id="roommateNumber" type="text" formControlName="roommateNumber">
+      </div>
+      <div id = "sqB">
+        <label for="sq1">First roommate square footage: </label>
+        <input id="sq1" type="text" formControlName="sq1">
+
+        <label for="sq2">Second roommate square footage: </label>
+        <input id="sq2" type="text" formControlName="sq2">
+
+        <label for="sq3">Third roommate square footage: </label>
+        <input id="sq3" type="text" formControlName="sq3">
+
+        <label for="sq4">Fourth roommate square footage: </label>
+        <input id="sq4" type="text" formControlName="sq4">
+      </div>
+      <div id = "sqC">
+        <label for="sq5">Fifth roommate square footage: </label>
+        <input id="sq5" type="text" formControlName="sq5">
+
+        <label for="sq6">Sixth roommate square footage: </label>
+        <input id="sq6" type="text" formControlName="sq6">
+
+        <label for="sq7">Seventh roommate square footage: </label>
+        <input id="sq7" type="text" formControlName="sq7">
+
+        <label for="sq8">Eighth roommate square footage: </label>
+        <input id="sq8" type="text" formControlName="sq8">
+      </div>
+    </div>
+  </form>
+
+  <form [formGroup]="sqValues" (ngSubmit)="onSubmit()"></form>
+
+  <p>Press the submit button when finished.</p>
+  <button id="subButton" type="button" (click)="onSubmit()">Submit</button>
+
+  <button type="button" (click)="resetValues()">Reset Inputs</button>
+
+  
+
+  <!-- Next Steps -->
+  <h2>Here is how much each roommate should pay:</h2>
+
+  <div id = "priceColumns">
+    <div id = "priceA">
+      <h3>Roommate 1: <span style="color:green;">${{result.roommatePay[0]}}</span></h3>
+      <h3>Roommate 2: <span style="color:green;">${{result.roommatePay[1]}}</span></h3>
+      <h3>Roommate 3: <span style="color:green;">${{result.roommatePay[2]}}</span></h3>
+      <h3>Roommate 4: <span style="color:green;">${{result.roommatePay[3]}}</span></h3>
+    </div>
+    <div id = "priceB">
+      <h3>Roommate 5: <span style="color:green;">${{result.roommatePay[4]}}</span></h3>
+      <h3>Roommate 6: <span style="color:green;">${{result.roommatePay[5]}}</span></h3>
+      <h3>Roommate 7: <span style="color:green;">${{result.roommatePay[6]}}</span></h3>
+      <h3>Roommate 8: <span style="color:green;">${{result.roommatePay[7]}}</span></h3>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer>
+      This is my first website!
+  </footer>
+
+</div>
+
+<router-outlet></router-outlet>
